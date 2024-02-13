@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentines Day!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #FFB6C1;
+            background-image: url('heart.gif');
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 100px;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: rgb(255, 146, 235);
+            transition: all 0.3s ease;
+            /* Add smooth transition */
+        }
+
+        p {
+            color: #ffffff;
+        }
+
+        button:hover {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine PLEASE PLEASE PLEASE?</h1>
+        <button id="yesBtn">YES OF COURSE ILL BE YOUR VALENTINE MY AMAZING BOYFRIEND &#128513;</button>
+        <button id="noBtn">No you stink &#129314;</button>
+    </div>
+
+    <script>
+        var noButton = document.getElementById('noBtn');
+        var decreaseAmount = 5; // Amount to decrease width, height, and font size by
+        var hoverCount = 0; // Counter for number of times "No" button has been hovered over
+
+        document.getElementById('yesBtn').addEventListener('click', function () {
+            window.location.href = 'yes.html'; // Change 'yes.html' to the URL of the page you want to redirect to
+        });
+
+        document.getElementById('noBtn').addEventListener('mouseover', function () {
+            // Increment hover count
+            hoverCount++;
+
+            // Get window dimensions
+            var windowWidth = window.innerWidth;
+            var windowHeight = window.innerHeight;
+
+            // Calculate random position
+            var newX = Math.random() * (windowWidth - 100); // 100 is the button width
+            var newY = Math.random() * (windowHeight - 40); // 40 is the button height
+
+            // Apply new position
+            this.style.position = 'absolute';
+            this.style.left = newX + 'px';
+            this.style.top = newY + 'px';
+
+            // Decrease button width, height, and font size
+
+            var currentWidth = parseInt(window.getComputedStyle(noButton).getPropertyValue('width'));
+            var currentHeight = parseInt(window.getComputedStyle(noButton).getPropertyValue('height'));
+            var currentFontSize = parseInt(window.getComputedStyle(noButton).getPropertyValue('font-size'));
+            noButton.style.windowWidth = (window.innerWidth - decreaseAmount) + 'px';
+            noButton.style.windowHeight = (window.innerHeight - decreaseAmount) + 'px';
+            noButton.style.width = (currentWidth - decreaseAmount) + 'px';
+            noButton.style.height = (currentHeight - decreaseAmount) + 'px';
+            noButton.style.fontSize = (currentFontSize - 2) + 'px';
+
+            // Check if hover count exceeds 10
+            if (hoverCount >= 10) {
+                // Hide the button
+                noButton.style.display = 'none';
+
+                // Display a message
+                var messageElement = document.createElement('p');
+                messageElement.textContent = "Pick yes right now. (or die)"; // Input your message here
+                document.body.appendChild(messageElement)
+            }
+        });
+    </script>
+</body>
+
+</html>
